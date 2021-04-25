@@ -36,7 +36,66 @@ df_new = rename(df_new, v2 = var2)
 
 # 실습 2
 
-sales <- data.frame(c('스노우맨', '연금술사', '벚꽃동산 '), 
-                    + c(12000,10000,9000),
-                    + c(50,78,35))
-mean(sales$pric)
+sales <-
+  data.frame(
+    item = c('사과', '오렌', '수박'),
+    price = c(12000, 10000, 9000),
+    volume = c(50, 78, 35)
+  )
+
+sales
+
+test1 = mean(sales$price)
+test2 = mean(sales$volume)
+
+
+# 실습 3
+library(readxl)
+LE = read_excel('../data/WorldBank_LE_GDP_2015.xlsx', sheet = 1)
+GDP = read_excel('../data/WorldBank_LE_GDP_2015.xlsx', sheet = 2)
+
+head(LE)
+head(GDP)
+
+sales = read.csv('../data/citysales.csv')
+
+library(foreign)
+titanic = read.spss('../data/titanic.sav',
+                    to.data.frame = T,
+                    use.value.labels = F)
+head(titanic)
+View(titanic)
+
+# 실습 4
+library(MASS)
+str(survey)
+
+str(MASS::survey)
+
+? MASS::survey
+
+# 실습 5
+library(ggplot2)
+as.data.frame(mpg)
+colnames(mpg)
+dim(mpg)
+head(mpg)
+str(mpg)
+summary(mpg)
+
+# 실습 6
+a = as.data.frame(midwest)
+head(a)
+colnames(a)
+
+library(dplyr)
+a = rename(a, total = poptotal, asian = popasian)
+colnames(a)
+
+a$ratio = a$asian/a$total*100
+
+
+mean(a$ratio)
+
+a$gr = ifelse(a$ratio >= mean(a$ratio), "large", "small")
+View(a)
